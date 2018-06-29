@@ -10,8 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class SpringBootBlueApplicationTests {
@@ -21,13 +19,10 @@ public class SpringBootBlueApplicationTests {
 	@Autowired
 	private TestRestTemplate restTemplate;
 
-	@Autowired
-	private ObjectMapper mapper;
-
 	@Test
-	public void testGetFruitBasket() {
+	public void testGetFruitList() {
 
-		log.info("/getFruitBasket JSON: {}", restTemplate.getForObject("/getFruitBasket", String.class));
+		log.info("/getFruitList JSON: {}", restTemplate.getForObject("/getFruitList", String.class));
 	}
 
 	@Test
@@ -35,4 +30,11 @@ public class SpringBootBlueApplicationTests {
 
 		log.info("/getBasketOfFruit JSON: {}", restTemplate.getForObject("/getBasketOfFruit", String.class));
 	}
+
+	@Test
+	public void testGetFruitBasket() {
+
+		log.info("/getFruitBasket JSON: {}", restTemplate.getForObject("/getFruitBasket", String.class));
+	}
+
 }

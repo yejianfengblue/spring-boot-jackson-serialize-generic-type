@@ -1,5 +1,8 @@
 package com.blue;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,18 @@ public class BasketController {
 	@Autowired
 	private ObjectMapper mapper;
 
+	@GetMapping(path = "getFruitList")
+	public List<Fruit> getFruitList() throws JsonProcessingException {
+
+		List<Fruit> fruitList = new ArrayList<Fruit>();
+		fruitList.add(new Apple(500));
+		fruitList.add(new Banana(600));
+
+		log.info("fruitList mapper.writeValueAsString: {}", mapper.writeValueAsString(fruitList));
+
+		return fruitList;
+	}
+
 	@GetMapping(path = "getFruitBasket")
 	public FruitBasket getFruitBasket() throws JsonProcessingException {
 
@@ -42,11 +57,12 @@ public class BasketController {
 	public Basket<Fruit> getBasketOfFruit() throws JsonProcessingException {
 
 		Basket<Fruit> basketOfFruit = new Basket<Fruit>();
-		basketOfFruit.getItems().add(new Apple(6));
-		basketOfFruit.getItems().add(new Banana(7));
+		basketOfFruit.getItems().add(new Apple(30));
+		basketOfFruit.getItems().add(new Banana(40));
 
 		log.info("Basket<Fruit> mapper.writeValueAsString: {}", mapper.writeValueAsString(basketOfFruit));
-		ObjectWriter writer = mapper.writerFor(new TypeReference<Basket<Fruit>>() {});
+		ObjectWriter writer = mapper.writerFor(new TypeReference<Basket<Fruit>>() {
+		});
 		log.info("Basket<Fruit> writer.writeValueAsString: {}", writer.writeValueAsString(basketOfFruit));
 
 		return basketOfFruit;
