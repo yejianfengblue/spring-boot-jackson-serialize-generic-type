@@ -8,7 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import com.blue.data.Basket;
+import com.blue.data.Fruit;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -42,6 +48,12 @@ public class SpringBootBlueApplicationTests {
 
 		log.info("/getBasketOfFruit JSON: {}", restTemplate.getForObject("/getBasketOfFruit", String.class));
 		// log: /getBasketOfFruit JSON: {"items":[{"wgt":5},{"wgt":6}]}
+		ResponseEntity<Basket<Fruit>> response =
+				restTemplate.exchange("/getBasketOfFruit",
+						HttpMethod.GET, null, new ParameterizedTypeReference<Basket<Fruit>>() {});
+		Basket<Fruit> basketOfFruit = response.getBody();
+		log.info("basketOfFruit: {}", basketOfFruit);
+
 	}
 
 }
