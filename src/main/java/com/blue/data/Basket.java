@@ -22,4 +22,10 @@ public class Basket<T> {
 		this.items = items;
 	}
 
+	@Override
+	public String toString() {
+
+		return "Basket [items=" + items + "]";
+	}
+
 }

@@ -22,4 +22,10 @@ public class FruitBasket {
 		this.items = items;
 	}
 
+	@Override
+	public String toString() {
+
+		return "FruitBasket [items=" + items + "]";
+	}
+
 }

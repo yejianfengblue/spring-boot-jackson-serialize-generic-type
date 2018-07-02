@@ -19,22 +19,29 @@ public class SpringBootBlueApplicationTests {
 	@Autowired
 	private TestRestTemplate restTemplate;
 
+	/** Same json string as Object<b>Writer</b> writes with @type in BasketController.getFruitList() */
 	@Test
 	public void testGetFruitList() {
 
 		log.info("/getFruitList JSON: {}", restTemplate.getForObject("/getFruitList", String.class));
+		// log: /getFruitList JSON: [{"@type":"Apple","wgt":1},{"@type":"Banana","wgt":2}]
 	}
 
-	@Test
-	public void testGetBasketOfFruit() {
-
-		log.info("/getBasketOfFruit JSON: {}", restTemplate.getForObject("/getBasketOfFruit", String.class));
-	}
-
+	/** Same json string as Object<b>Mapper</b> writes with @type in BasketController.getFruitBasket() */
 	@Test
 	public void testGetFruitBasket() {
 
 		log.info("/getFruitBasket JSON: {}", restTemplate.getForObject("/getFruitBasket", String.class));
+		// log: /getFruitBasket JSON: {"items":[{"@type":"Apple","wgt":3},{"@type":"Banana","wgt":4}]}
+	}
+
+	/** Same json string as Object<b>Mapper</b> writes without @type in BasketController.getBasketOfFruit().
+	 * What I want is the string as Object<b>Writer</b> writes with @type */
+	@Test
+	public void testGetBasketOfFruit() {
+
+		log.info("/getBasketOfFruit JSON: {}", restTemplate.getForObject("/getBasketOfFruit", String.class));
+		// log: /getBasketOfFruit JSON: {"items":[{"wgt":5},{"wgt":6}]}
 	}
 
 }

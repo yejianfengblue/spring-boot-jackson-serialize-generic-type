@@ -9,6 +9,7 @@ public class Apple implements Fruit {
 	private int wgt;
 
 	public Apple() {
+
 		super();
 		this.wgt = 0;
 	};
@@ -27,6 +28,12 @@ public class Apple implements Fruit {
 	public void setWgt(int wgt) {
 
 		this.wgt = wgt;
+	}
+
+	@Override
+	public String toString() {
+
+		return "Apple [wgt=" + wgt + "]";
 	}
 
 }

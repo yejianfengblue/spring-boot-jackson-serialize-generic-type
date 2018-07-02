@@ -30,4 +30,10 @@ public class Banana implements Fruit {
 		this.wgt = wgt;
 	}
 
+	@Override
+	public String toString() {
+
+		return "Banana [wgt=" + wgt + "]";
+	}
+
 }
