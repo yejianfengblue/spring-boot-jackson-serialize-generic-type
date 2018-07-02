@@ -51,7 +51,7 @@ public class BasketController {
 		fruitBasket.getItems().add(new Apple(3));
 		fruitBasket.getItems().add(new Banana(4));
 		log.info("FruitBasket mapper.writeValueAsString: {}", mapper.writeValueAsString(fruitBasket));
-		// log: FruitBasket mapper.writeValueAsString: {"items":[{"type":"Apple","wgt":3},{"type":"Banana","wgt":4}]}
+		// log: FruitBasket mapper.writeValueAsString: {"items":[{"@type":"Apple","wgt":3},{"@type":"Banana","wgt":4}]}
 		return fruitBasket;
 	}
 
